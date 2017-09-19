@@ -20,17 +20,27 @@ rule_assertion_2 = -> (x) { x == :masculino }
 rule_subject_2 = danilo.gender
 masculino = RulesEngine::Core::Rule.new(rule_title_2, rule_description_2, rule_assertion_2, rule_subject_2)
 
+puts "\nAplicação de regras isoladamente"
+maior = maior_de_idade.apply
+masc = masculino.apply
+puts "Masculino meta: #{masc.metadata}"
+puts "Maior de idade meta: #{maior.metadata}"
+puts "Masculino? #{masc.result}"
+puts "Maior de idade? #{maior.result}"
+
+puts "\nAplicação de conjunto de regras"
 rule_set_title = "My first rule set!"
 rule_set_description = "This rule set aims to test my new rules engine!"
 regras_de_venda = RulesEngine::Core::RuleSet.new(rule_set_title, rule_set_description)
 
+regra_inexistente = RulesEngine::Core::Rule.new(nil, nil, nil, nil)
 regras_de_venda.add_rule(maior_de_idade)
 regras_de_venda.add_rule(masculino)
-
-# Aplicação de regras específicas ao subject
-# maior_de_idade.apply
-# masculino.apply
+puts regras_de_venda.rules.size
+regras_de_venda.del_rule(regra_inexistente)
+regras_de_venda.del_rule(maior_de_idade)
+puts regras_de_venda.rules.size
 
 regras_aplicadas = regras_de_venda.apply_all
 puts regras_aplicadas.class
-puts regras_aplicadas.next
+puts regras_aplicadas.results
