@@ -15,14 +15,8 @@ module RulesEngine
       end
 
       def metadata
-        {
-          id: self.object_id,
-          created_at: @created_at,
-          title: @title,
-          description: @description,
-          rules: @rules,
-          results: @results
-        }
+        { id: self.object_id, created_at: @created_at, title: @title,
+          description: @description, rules: @rules, results: @results }
       end
 
       def add_rule(rule)

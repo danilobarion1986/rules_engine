@@ -36,6 +36,7 @@ regras_de_venda = RulesEngine::Core::RuleSet.new(rule_set_title, rule_set_descri
 regra_inexistente = RulesEngine::Core::Rule.new(nil, nil, nil, nil)
 regras_de_venda.add_rule(maior_de_idade)
 regras_de_venda.add_rule(masculino)
+regras_de_venda.add_rule("masculino")
 puts regras_de_venda.rules.size
 regras_de_venda.del_rule(regra_inexistente)
 regras_de_venda.del_rule(maior_de_idade)
