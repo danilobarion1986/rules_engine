@@ -3,12 +3,11 @@ require 'pry-byebug'
 module RulesEngine
   module Core
     class RuleSet
-      attr_accessor :title, :description, :rules
-      attr_reader   :created_at, :results
+      attr_reader :title, :description, :created_at, :rules, :results
 
       def initialize(title, description)
         @created_at = Time.now
-        @title = title || 'RuleSet title'
+        @title = title || :ruleset_title
         @description = description || 'RuleSet description'
         @rules = []
         @results = []
@@ -27,9 +26,9 @@ module RulesEngine
         @rules.delete(rule)
       end
 
-      def apply_all
-        @rules.each_with_index do |rule, index|
-          @results.push({ rule: rule, result: rule.apply.result })
+      def apply_all_to(subject)
+        @rules.each do |rule|
+          @results.push({ rule: rule, result: rule.apply_to(subject).result })
         end
         self
       end
