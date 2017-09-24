@@ -1,9 +1,10 @@
 class User
-  attr_accessor :name, :age, :gender
+  attr_accessor :name, :age, :gender, :premium
 
-  def initialize(name, age, gender)
+  def initialize(name, age, gender, premium)
     @name = name
     @age = age
     @gender = gender
+    @premium = premium || false
   end
 end

@@ -18,7 +18,7 @@ module RulesEngine
         @reapplicable = true
         @applied_at = nil
         @result = nil
-        @errors = nil
+        @errors = []
       end
 
       def metadata
@@ -30,7 +30,7 @@ module RulesEngine
       def apply_to(subject)
         reset_result_if_applied
 
-        if subject_is_of_expected_class(subject)
+        if subject_is_of_expected_class?(subject)
           @applied_at = Time.now
           @applied = true
           @result = @assertion.call(subject)
@@ -52,7 +52,7 @@ module RulesEngine
 
       private
 
-      def subject_is_of_expected_class(subject)
+      def subject_is_of_expected_class?(subject)
         subject.class == @subject_class
       end
 
