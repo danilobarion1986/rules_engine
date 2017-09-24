@@ -17,12 +17,12 @@ class LinkedList
   def find_tail
     node = @head
 
-    return node if !node.next
-    return node if !node.next while (node = node.next)
+    return node unless node.next
+    return node unless node.next while (node = node.next)
   end
 
   def append_after(target, value)
-    node           = find(target)
+    node = find(target)
 
     return unless node
 
@@ -34,7 +34,7 @@ class LinkedList
   def find(value)
     node = @head
 
-    return false if !node.next
+    return false unless node.next
     return node  if node.value == value
 
     while (node = node.next)
@@ -55,7 +55,7 @@ class LinkedList
   def find_before(value)
     node = @head
 
-    return false if !node.next
+    return false unless node.next
     return node  if node.next.value == value
 
     while (node = node.next)

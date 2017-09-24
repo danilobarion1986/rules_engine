@@ -11,10 +11,11 @@ module RulesEngine
         @description = description || 'RuleSet description'
         @rules = []
         @results = []
+        @r = nil
       end
 
       def metadata
-        { id: self.object_id, created_at: @created_at, title: @title,
+        { id: object_id, created_at: @created_at, title: @title,
           description: @description, rules: @rules, results: @results }
       end
 
@@ -26,9 +27,20 @@ module RulesEngine
         @rules.delete(rule)
       end
 
+      def apply_rule(rule)
+        @r = @rules.select { |x| x.object_id == rule.object_id }.first
+        self
+      end
+
+      def to(subject)
+        @r.apply_to(subject)
+        @results.push(rule: @r, result: @r.apply_to(subject).result)
+        self
+      end
+
       def apply_all_to(subject)
         @rules.each do |rule|
-          @results.push({ rule: rule, result: rule.apply_to(subject).result })
+          @results.push(rule: rule, result: rule.apply_to(subject).result)
         end
         self
       end
