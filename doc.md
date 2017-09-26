@@ -11,12 +11,12 @@ This rule is applied to class _User_.
 Rule assertion:
 
 ```
-#<Proc:0x0000000244b9f0@main.rb:13 (lambda)>
+lambda { |x, y| x.age > 18 }
 ```
 
 Rule created on:
 - File: main.rb
-- Line: 13
+- Line: 12
 
 
 ##Masculino
@@ -28,12 +28,12 @@ This rule is applied to class _User_.
 Rule assertion:
 
 ```
-#<Proc:0x0000000244b8d8@main.rb:17 (lambda)>
+-> (x) { x.gender == :masculino }
 ```
 
 Rule created on:
 - File: main.rb
-- Line: 17
+- Line: 18
 
 
 ##Usuário Premium
@@ -45,11 +45,11 @@ This rule is applied to class _User_.
 Rule assertion:
 
 ```
-#<Proc:0x0000000244b7e8@main.rb:23 (lambda)>
+->(x) { x.premium }
 ```
 
 Rule created on:
 - File: main.rb
-- Line: 23
+- Line: 24
 
 

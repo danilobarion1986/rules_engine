@@ -1,6 +1,6 @@
-require_relative 'rule'
-require_relative 'rule_set'
-require_relative 'documents'
+require_relative 'core/rule'
+require_relative 'core/rule_set'
+require_relative 'generators/documents'
 require_relative 'user'
 require 'pry-byebug'
 
@@ -9,20 +9,21 @@ danilo = User.new('Danilo', 30, :masculino, false)
 pedro = User.new('Pedro', 2, :masculino, true)
 
 # Regra 1
-maior_de_idade = RulesEngine::Core::Rule.new('Maior de 18 anos', 'O usuário deve ser maior de 18 anos.',
-                                             ->(x) { x.age > 18 }, User)
+l = lambda { |x, y| x.age > 18 }
+# l = -> (x, y) { x.age > 18 && y.age < 30 }
+maior_de_idade = RulesEngine::Core::Rule.new('Maior de 18 anos', 'O usuário deve ser maior de 18 anos.', l, User)
 
 # Regra 2
 masculino = RulesEngine::Core::Rule.new('Masculino', 'O usuário deve ser do sexo masculino.',
-                                        ->(x) { x.gender == :masculino }, User)
+  -> (x) { x.gender == :masculino }, User)
 
 # Regra 3
 usuario_premium = RulesEngine::Core::Rule.new(
-  'Usuário Premium', 
-  'O usuário deve ser premium.', 
+  'Usuário Premium',
+  'O usuário deve ser premium.',
   ->(x) { x.premium }, User)
 
-regras = RulesEngine::Core::RuleSet.new('Regras de Desconto', 
+regras = RulesEngine::Core::RuleSet.new('Regras de Desconto',
   'Este conjunto de regras define quem terá direito ao desconto especial na linha de produtos masculinos.')
 
 =begin

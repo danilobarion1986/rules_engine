@@ -1,5 +1,5 @@
 require 'pry-byebug'
-require_relative 'linked_list'
+require_relative '../support/linked_list'
 
 module RulesEngine
   module Core
@@ -34,7 +34,7 @@ module RulesEngine
       end
 
       def add_many(rules)
-        rules.each { |rule| add(rule) } unless rules.class != Array 
+        rules.each { |rule| add(rule) } unless rules.class != Array
         self
       end
 
@@ -86,11 +86,11 @@ module RulesEngine
         self
       end
 
-      private 
+      private
 
       def find_rule(rule)
         r = @rules.select { |x| x.object_id == rule.object_id }
-        r.first unless r.nil? 
+        r.first unless r.nil?
       end
     end
   end

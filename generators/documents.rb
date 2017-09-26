@@ -1,4 +1,5 @@
 require 'pry-byebug'
+require_relative '../support/lambda_reader'
 
 module RulesEngine
   module Generators
@@ -9,12 +10,11 @@ module RulesEngine
         @ruleset = ruleset
         @body = ""
       end
-      
+
       def create_docs(type: :markdown)
         read_rules
         write_file
         puts "Docs created for #{@ruleset.title} ruleset!"
-        puts @body
       end
 
       def read_rules
@@ -43,7 +43,7 @@ module RulesEngine
         rule_block << "This rule is applied to class _#{rule.subject_class}_.\n\n"
         rule_block << "Rule assertion:\n\n"
         rule_block << "```\n"
-        rule_block << "#{rule.assertion}\n"
+        rule_block << "#{RulesEngine::Support::LambdaReader.lambda2source(rule.assertion)}\n"
         rule_block << "```\n\n"
         rule_block << "Rule created on:\n"
         rule_block << "- File: #{rule.assertion.source_location.first}\n"
