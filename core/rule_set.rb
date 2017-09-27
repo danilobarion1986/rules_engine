@@ -1,5 +1,5 @@
 require 'pry-byebug'
-require_relative 'linked_list'
+require_relative '../support/linked_list'
 
 module RulesEngine
   module Core
@@ -26,15 +26,14 @@ module RulesEngine
       end
 
       def and_apply_to(subject)
-        if !@rules.empty?
-          applied_rule = @rules.last.apply_to(subject)
-          @results.push(rule: applied_rule.title, result: applied_rule.result, errors: applied_rule.errors)
-        end
+        return self if @rules.empty?
+        applied_rule = @rules.last.apply_to(subject)
+        @results.push(rule: applied_rule.title, result: applied_rule.result, errors: applied_rule.errors)
         self
       end
 
       def add_many(rules)
-        rules.each { |rule| add(rule) } unless rules.class != Array 
+        rules.each { |rule| add(rule) } unless rules.class != Array
         self
       end
 
@@ -45,7 +44,7 @@ module RulesEngine
       def apply_all_to(subject)
         @rules.each do |rule|
           applied_rule = rule.apply_to(subject)
-          @results.push(rule: rule.title, result: applied_rule.result, errors: applied_rule.errors )
+          @results.push(rule: rule.title, result: applied_rule.result, errors: applied_rule.errors)
         end
         self
       end
@@ -67,11 +66,10 @@ module RulesEngine
       end
 
       def to(subject)
-        if !@r.nil?
-          applied_rule = @r.apply_to(subject)
-          @results.push(rule: applied_rule.title, result: applied_rule.result, errors: applied_rule.errors)
-          @r = nil
-        end
+        return self if @r.nil?
+        applied_rule = @r.apply_to(subject)
+        @results.push(rule: applied_rule.title, result: applied_rule.result, errors: applied_rule.errors)
+        @r = nil
         self
       end
 
@@ -86,11 +84,11 @@ module RulesEngine
         self
       end
 
-      private 
+      private
 
       def find_rule(rule)
         r = @rules.select { |x| x.object_id == rule.object_id }
-        r.first unless r.nil? 
+        r.first unless r.nil?
       end
     end
   end
