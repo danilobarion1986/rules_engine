@@ -1,4 +1,3 @@
-
 module RulesEngine
   module Support
     class LambdaReader

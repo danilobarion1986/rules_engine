@@ -4,8 +4,8 @@ AllCops:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'linked_list.rb'
-    - 'node.rb'
+    - 'support/linked_list.rb'
+    - 'support/node.rb'
     - 'main.rb'
 
 Documentation:

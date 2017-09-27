@@ -59,4 +59,4 @@ regras.reset
 
 puts "\nCriação de documentação a partir de um RuleSet"
 regras.add_many([maior_de_idade, masculino, usuario_premium])
-RulesEngine::Generators::Documents.new(regras).create_docs
+RulesEngine::Generators::Documents.new(regras).create_docs # ('./business_rules')
