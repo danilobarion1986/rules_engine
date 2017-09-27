@@ -11,12 +11,12 @@ This rule is applied to class _User_.
 Rule assertion:
 
 ```
-lambda { |x, y| x.age > 18 }
+-> (x) { x.age > 18 }
 ```
 
 Rule created on:
 - File: main.rb
-- Line: 12
+- Line: 13
 
 
 ##Masculino
@@ -33,7 +33,7 @@ Rule assertion:
 
 Rule created on:
 - File: main.rb
-- Line: 18
+- Line: 17
 
 
 ##Usuário Premium
@@ -50,6 +50,6 @@ Rule assertion:
 
 Rule created on:
 - File: main.rb
-- Line: 24
+- Line: 23
 
 

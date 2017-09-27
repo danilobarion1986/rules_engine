@@ -9,9 +9,8 @@ danilo = User.new('Danilo', 30, :masculino, false)
 pedro = User.new('Pedro', 2, :masculino, true)
 
 # Regra 1
-l = lambda { |x, y| x.age > 18 }
-# l = -> (x, y) { x.age > 18 && y.age < 30 }
-maior_de_idade = RulesEngine::Core::Rule.new('Maior de 18 anos', 'O usuário deve ser maior de 18 anos.', l, User)
+maior_de_idade = RulesEngine::Core::Rule.new('Maior de 18 anos', 'O usuário deve ser maior de 18 anos.', 
+  -> (x) { x.age > 18 }, User)
 
 # Regra 2
 masculino = RulesEngine::Core::Rule.new('Masculino', 'O usuário deve ser do sexo masculino.',
