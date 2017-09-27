@@ -29,7 +29,7 @@ module RulesEngine
 
       def apply_to(subject)
         reset_result_if_applied
-
+        
         if subject_is_of_expected_class?(subject)
           @applied_at = Time.now
           @applied = true
@@ -57,9 +57,7 @@ module RulesEngine
       end
 
       def reset_result_if_applied
-        if applied? && !reapplicable?
-          raise StandardError, 'This rule cannot be reapplied!'
-        end
+        raise StandardError, 'This rule cannot be reapplied!' if applied? && !reapplicable?
         @result = nil if applied?
       end
 
