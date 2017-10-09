@@ -8,8 +8,8 @@ require_relative 'pipelines/flow'
 require_relative 'user'
 
 class Main
-  include RulesEngine::Core 
-  include RulesEngine::Generators  
+  include RulesEngine::Core
+  include RulesEngine::Generators
   include RulesEngine::Pipelines
 
   def initialize
@@ -21,7 +21,7 @@ class Main
   def criar_regras
     puts "\nCriação de regras"
     # Regra 1
-    @maior_de_idade = Rule.new('Maior de 18 anos', 'O usuário deve ser maior de 18 anos.', 
+    @maior_de_idade = Rule.new('Maior de 18 anos', 'O usuário deve ser maior de 18 anos.',
       -> (x) { x.age > 18 }, User)
     # Regra 2
     @masculino = Rule.new('Masculino', 'O usuário deve ser do sexo masculino.',
@@ -68,7 +68,7 @@ class Main
   end
 
   def criar_docs
-    puts "\nCriação de documentação a partir de um RuleSet"  
+    puts "\nCriação de documentação a partir de um RuleSet"
     @regras.add_many([@maior_de_idade, @masculino, @usuario_premium])
     Documents.new(@regras).create_docs # ('./business_rules')
   end
@@ -89,9 +89,9 @@ class Main
 end
 
 m = Main.new
-#m.criar_regras
-#m.aplicar_regras
-#m.criar_docs
+m.criar_regras
+m.aplicar_regras
+m.criar_docs
 m.criar_flow
 
 

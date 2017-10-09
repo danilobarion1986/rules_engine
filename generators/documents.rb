@@ -53,14 +53,14 @@ module RulesEngine
       end
 
       def create_metadata_doc_block(rule)
-        rule_block << "Rule assertion:\n\n```\n"
+        rule_block = "Rule assertion:\n\n```\n"
         rule_block << "#{RulesEngine::Support::LambdaReader.lambda2source(rule.assertion)}\n```\n\n"
         rule_block << "Rule created on:\n"
         rule_block
       end
 
       def create_source_code_info_doc_block(rule)
-        rule_block << "- File: #{rule.assertion.source_location.first}\n"
+        rule_block = "- File: #{rule.assertion.source_location.first}\n"
         rule_block << "- Line: #{rule.assertion.source_location.last}\n"
         rule_block << "\n\n"
         rule_block

@@ -2,9 +2,12 @@ module RulesEngine
   module Support
     class LambdaReader
       class << self
-        def lambda2source(lambda_obj)
-          return if lambda_obj.class != Proc
-          @lambda_code_line = extract_lambda_code_line(lambda_obj.source_location)
+        def lambda2source(obj)
+          unless obj.class == Proc
+            raise ArgumentError,
+                  "Wrong parameter class. Expected Lambda, got #{obj.class}."
+          end
+          @lambda_code_line = extract_lambda_code_line(obj.source_location)
           lambda_code = match_lambda_syntax
           lambda_code[0] unless lambda_code.nil?
         end

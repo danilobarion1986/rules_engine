@@ -14,6 +14,11 @@ Rule assertion:
 -> (x) { x.age > 18 }
 ```
 
+Rule created on:
+- File: main.rb
+- Line: 25
+
+
 ##Masculino
 
 O usuário deve ser do sexo masculino.
@@ -26,6 +31,11 @@ Rule assertion:
 -> (x) { x.gender == :masculino }
 ```
 
+Rule created on:
+- File: main.rb
+- Line: 28
+
+
 ##Usuário Premium
 
 O usuário deve ser premium.
@@ -37,4 +47,9 @@ Rule assertion:
 ```
 ->(x) { x.premium }
 ```
+
+Rule created on:
+- File: main.rb
+- Line: 33
+
 
