@@ -41,10 +41,29 @@ module RulesEngine
       end
 
       def create_doc_block_for(rule)
+        rule_block = create_title_description_doc_block(rule)
+        rule_block << create_metadata_doc_block(rule)
+        rule_block << create_source_code_info_doc_block(rule)
+      end
+
+      def create_title_description_doc_block(rule)
         rule_block = "###{rule.title}\n\n#{rule.description}\n\n"
         rule_block << "This rule is applied to class _#{rule.subject_class}_.\n\n"
+        rule_block
+      end
+
+      def create_metadata_doc_block(rule)
         rule_block << "Rule assertion:\n\n```\n"
         rule_block << "#{RulesEngine::Support::LambdaReader.lambda2source(rule.assertion)}\n```\n\n"
+        rule_block << "Rule created on:\n"
+        rule_block
+      end
+
+      def create_source_code_info_doc_block(rule)
+        rule_block << "- File: #{rule.assertion.source_location.first}\n"
+        rule_block << "- Line: #{rule.assertion.source_location.last}\n"
+        rule_block << "\n\n"
+        rule_block
       end
     end
   end
