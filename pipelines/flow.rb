@@ -10,13 +10,13 @@ module RulesEngine
 
       def initialize
         @created_at = Time.now
-        @steps = [] 
+        @steps = []
       end
 
       def add_step(step)
-        return if step.class != Step  
+        return if step.class != Step
         @steps.push(step)
-        self  
+        self
       end
 
       def add_steps(steps)

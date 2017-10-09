@@ -29,14 +29,14 @@ module RulesEngine
 
       def apply_to(subject)
         reset_result_if_applied
-        
+
         if subject_is_of_expected_class?(subject)
           @applied_at = Time.now
           @applied = true
           @result = @assertion.call(subject)
         else
           add_error(ArgumentError,
-                    "The rule expects an object of #{@subject_class} class, but #{subject.class} was given.")
+                    "Wrong subject type type for key `number`. Expected #{@subject_class}, got #{subject.class}.")
         end
 
         self

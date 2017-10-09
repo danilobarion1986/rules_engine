@@ -13,15 +13,15 @@ module RulesEngine
       end
 
       def add_branch(branch)
-        return if branch.class != Branch  
+        return if branch.class != Branch
         @branchs.push(branch)
-        self  
+        self
       end
 
       def add_branchs(branchs)
-        return if branchs.class != Array  
+        return if branchs.class != Array
         branchs.each { |branch| add_branch(branch) }
-        self  
+        self
       end
 
       def representation
