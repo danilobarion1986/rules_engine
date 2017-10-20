@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 module RulesEngine
   module Support
     class LambdaReader
@@ -21,7 +23,7 @@ module RulesEngine
         end
 
         def match_lambda_syntax
-          classic_syntax_matcher || dash_rocket_syntax_matcher
+          classic_syntax_matcher || dash_rocket_syntax_matcher || do_end_syntax_matcher
         end
 
         def classic_syntax_matcher
@@ -29,7 +31,11 @@ module RulesEngine
         end
 
         def dash_rocket_syntax_matcher
-          /-> ?\(.*\) ?{.*}/m.match(@lambda_code_line)
+          /-> ?\(?.*\)? ?{.*}/m.match(@lambda_code_line)
+        end
+
+        def do_end_syntax_matcher
+          /lambda do \|?.*\|?.* end/m.match(@lambda_code_line)
         end
       end
     end

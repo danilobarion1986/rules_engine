@@ -28,7 +28,7 @@ This rule is applied to class _User_.
 Rule assertion:
 
 ```
--> (x) { x.gender == :masculino }
+
 ```
 
 Rule created on:
@@ -50,6 +50,6 @@ Rule assertion:
 
 Rule created on:
 - File: main.rb
-- Line: 33
+- Line: 35
 
 

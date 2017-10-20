@@ -25,7 +25,9 @@ class Main
       -> (x) { x.age > 18 }, User)
     # Regra 2
     @masculino = Rule.new('Masculino', 'O usuário deve ser do sexo masculino.',
-      -> (x) { x.gender == :masculino }, User)
+      lambda do |x|
+        x.gender == :masculino
+      end, User)
     # Regra 3
     @usuario_premium = Rule.new(
       'Usuário Premium',
