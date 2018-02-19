@@ -37,8 +37,10 @@ module RulesEngine
         r
       end
 
-      def execute
-        puts 'executar os steps do flow'
+      def execute_for(subject)
+        @steps.each do |step|
+          step.verify_for(subject)
+        end
       end
     end
   end
